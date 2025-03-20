@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class city extends Model
+class City extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'image',
         'name',
-        'slug'
+        'slug',
     ];
 
     public function boardinghouses()
     {
-        return $this->hasMany(Boardinghouse::class);
+        return $this->hasMany(BoardingHouse::class);
     }
 }
