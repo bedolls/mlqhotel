@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class CityResource extends Resource
 {
@@ -29,7 +30,12 @@ class CityResource extends Resource
                 ->required()
                 ->columnSpan(2),
                 Forms\Components\TextInput::make('name')
-                ->required(),
+                ->required()
+                ->debounce(500)
+                ->reactive()
+                ->afterStateUpdated(function ($state, callable $set){
+                    $set('slug', Str::slug($state));
+                }),
                 Forms\Components\TextInput::make('slug')
                 ->required(),
             ]);
@@ -39,10 +45,12 @@ class CityResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('slug'),
             ])
             ->filters([
-                //
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
