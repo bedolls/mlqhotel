@@ -9,13 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up()
+{
+    if (!Schema::hasTable('rooms')) {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('boarding_house_id')->constrained();
+            $table->string('name');
+            $table->string('room_type');
+            $table->integer('square_feet');
+            $table->integer('price_per_month');
+            $table->boolean('is_available');
             $table->timestamps();
         });
     }
+}
 
     /**
      * Reverse the migrations.

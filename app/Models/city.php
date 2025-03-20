@@ -13,4 +13,9 @@ class city extends Model
         'name',
         'slug'
     ];
+
+    public function boardinghouses()
+    {
+        return $this->hasMany(Boardinghouse::class);
+    }
 }

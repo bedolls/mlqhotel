@@ -9,13 +9,28 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up()
+{
+    if (!Schema::hasTable('transactions')) {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->foreignId('boarding_house_id')->constrained();
+            $table->foreignId('room_id')->constrained();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->enum('payment_method', ['down_payment', 'full_payment'])->nullable();
+            $table->string('payment_status')->nullable();
+            $table->date('start_date');
+            $table->integer('duration');
+            $table->integer('total_amount')->nullable();
+            $table->date('transaction_date')->nullable();
             $table->timestamps();
         });
     }
+}
+
 
     /**
      * Reverse the migrations.

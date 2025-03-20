@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use HasFactory;
+
     protected $fillable =[
         'image',
         'name',
         'slug'
     ];
+
+    public function boardinghouse()
+    {
+        return $this->hasMany(Boardinghouse::class);
+    }
 }
