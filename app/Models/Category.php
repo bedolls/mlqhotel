@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Category extends Model
 {
@@ -14,7 +16,7 @@ class Category extends Model
         'slug'
     ];
 
-    public function boardinghouse()
+    public function boardinghouses()
     {
         return $this->hasMany(Boardinghouse::class);
     }

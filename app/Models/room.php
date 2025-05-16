@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class room extends Model
 {
@@ -11,15 +12,15 @@ class room extends Model
     protected $fillable =[
         'boarding_house_id',
         'name',
-        'roomtype',
+        'room_type',
         'square_feet',
         'price_per_month',
         'is_available',
     ];
 
-    public function boardinghouse()
+    public function boardingHouse()
     {
-        return $this->belongsTo(Boardinghouse::class);
+        return $this->belongsTo(BoardingHouse::class);
     }
 
     public function transactions()

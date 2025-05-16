@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class transaction extends Model
 {
@@ -23,7 +24,7 @@ class transaction extends Model
         'transaction_date'
     ];
 
-    public function boardinghouse()
+    public function boardingHouse()
     {
         return $this->belongsTo(BoardingHouse::class, 'boarding_house_id');
     }

@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class bonus extends Model
+class Bonus extends Model
 {
     use HasFactory;
 
@@ -15,11 +16,19 @@ class bonus extends Model
         'description',
     ];
 
-    public function boardinghouse()
+    public function boardingHouse()
     {
-        return $this->belongsTo(Boardinghouse::class);
+        return $this->belongsTo(BoardingHouse::class);
     }
-    
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(RoomImage::class);
+    }
+
 }
-
-

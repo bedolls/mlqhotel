@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boardinghouses', function (Blueprint $table) {
+        Schema::create('boarding_houses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
             $table->string('thumbnail');
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->text('description');
             $table->integer('price');
             $table->text('address');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boardinghouses');
+        Schema::dropIfExists('boarding_houses');
     }
 };

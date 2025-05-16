@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Boardinghouse extends Model
+
 {
     use HasFactory;
 
@@ -14,6 +16,7 @@ class Boardinghouse extends Model
         'thumbnail',
         'city_id',
         'category_id',
+        'description',
         'price',
         'address'
     ];
@@ -35,8 +38,9 @@ class Boardinghouse extends Model
 
     public function bonuses()
     {
-        return $this->hasMany(Bonus::class);
+    return $this->hasMany(Bonus::class); 
     }
+
 
     public function testimonials()
     {

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up()
 {
-    if (!Schema::hasTable('transactions')) {
-        Schema::create('transactions', function (Blueprint $table) {
+     Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->foreignId('boarding_house_id')->constrained();
-            $table->foreignId('room_id')->constrained();
+            $table->string('code');
+            $table->foreignId('boarding_house_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('room_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->date('transaction_date')->nullable();
             $table->timestamps();
         });
-    }
+    
 }
 
 
